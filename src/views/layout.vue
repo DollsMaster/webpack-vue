@@ -1,13 +1,14 @@
 <template>
   <div class="layout-wrap">
-    ces
+    cesfff
   </div>
 </template>
 <script>
 
 </script>
-<style scoped >
+<style scoped lang="scss">
 .layout-wrap {
   color: red;
+  background-color: aqua;
 }
 </style>

@@ -23,6 +23,10 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
       {
+        test: /\.scss$/,
+        use: ['vue-style-loader', 'css-loader', 'sass-loader']
+      },
+      {
         test: /\.js$/,
         exclude: /(node_modules)/,
         use: {
@@ -49,6 +53,11 @@ module.exports = {
     alias: {
       '@': path.resolve(__dirname, './src')
     }
+  },
+  devServer: {
+    port: 9000,
+    host: '0.0.0.0',
+    hot: true
   },
   mode: "development"
 }

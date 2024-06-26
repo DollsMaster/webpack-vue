@@ -2,4 +2,9 @@
     font-size: 26px;
     color: black;
     border: solid 2px chartreuse;
+    div {
+        font-size: 36px;
+        color: red;
+        background-color: blue;
+    }
 }

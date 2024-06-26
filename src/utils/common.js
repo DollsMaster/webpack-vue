@@ -1,3 +1,8 @@
 export function getLog() {
-  console.log('========================')
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log('========================')
+      resolve()
+    }, 2000)
+  })
 }

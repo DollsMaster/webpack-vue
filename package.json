@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "dev": "webpack-dev-server --progress --config build/webpack.dev.conf.js"
+    "dev": "webpack-dev-server --progress --config build/webpack.dev.conf.js",
+    "build": "webpack ./build/webpack.dev.conf.js"
   },
   "devDependencies": {
     "@babel/core": "^7.24.7",

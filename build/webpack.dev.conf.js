@@ -1,42 +1,63 @@
-'use strict'
-const config = require('../config')
-const webpack = require('webpack')
-const {merge} = require('webpack-merge')
-const webpackBaseConfig = require('./webpack.base.conf')
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const portfinder = require('portfinder')
-const webpackDevConfig = merge(webpackBaseConfig,{
-  mode: 'development',
-  devServer: {
-    host: config.dev.host,
-    port: config.dev.port,
-    publicPath: config.dev.assetsPublicPath
+const path = require('path')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader')
+
+module.exports = {
+  entry: path.resolve(__dirname, '../src/main.js'),
+  output: {
+    filename: "bundle.js",
+    path: path.resolve(__dirname, '../dist')
+  },
+  module: {
+    rules: [
+      {
+        test: /\.vue$/,
+        use: {
+          loader: "vue-loader"
+        }
+      },
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
+      },
+      {
+        test: /\.scss$/,
+        use: ['vue-style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      }
+    ]
   },
   plugins: [
-      new webpack.DefinePlugin({
-        'process.env': require('../config/dev.env')
-      }),
-      new HtmlWebpackPlugin({
-        filename: 'index.html',
-        template: 'index.html',
-        inject: true
-      })
-  ]
-})
-module.exports = new Promise((resolve, reject) => {
-  portfinder.basePort = config.dev.port
-  portfinder.getPort((err, port) => {
-    if (err) {
-      reject(err)
-    } else {
-      process.env.PORT = port
-      webpackDevConfig.devServer.port = port
-      webpackDevConfig.plugins.push({
-        compilationSuccessInfo: [
-            `应用运行中: http://${webpackDevConfig.devServer.host}:${port}`
-        ]
-      })
-      resolve(webpackBaseConfig)
+    new VueLoaderPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, '../index.html'),
+      filename: "index.html"
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[chunkhash].css'
+    }),
+    new CleanWebpackPlugin()
+  ],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, '../src')
     }
-  })
-})
+  },
+  devServer: {
+    port: 9000,
+    host: '0.0.0.0',
+    hot: true
+  },
+  mode: "development"
+}

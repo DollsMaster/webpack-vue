@@ -1,63 +1,57 @@
-const path = require('path')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const { VueLoaderPlugin } = require('vue-loader')
-
-module.exports = {
-  entry: path.resolve(__dirname, '../src/main.js'),
-  output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, '../dist')
-  },
-  module: {
-    rules: [
-      {
-        test: /\.vue$/,
-        use: {
-          loader: "vue-loader"
-        }
-      },
-      {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
-      },
-      {
-        test: /\.scss$/,
-        use: ['vue-style-loader', 'css-loader', 'sass-loader']
-      },
-      {
-        test: /\.js$/,
-        exclude: /(node_modules)/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ['@babel/preset-env']
-          }
-        }
-      }
-    ]
-  },
-  plugins: [
-    new VueLoaderPlugin(),
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../index.html'),
-      filename: "index.html"
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[chunkhash].css'
-    }),
-    new CleanWebpackPlugin()
-  ],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, '../src')
-    }
-  },
+const {merge} = require("webpack-merge");
+const baseWebpackConfig = require('./webpack.base.conf')
+const config = require('../config/index')
+const portfinder = require('portfinder')
+const {dev} = require("../config");
+const devWebpackConfig = merge(baseWebpackConfig, {
   devServer: {
-    port: 9000,
-    host: '0.0.0.0',
-    hot: true
+    port: config.dev.port,
+    host: config.dev.host,
+    hot: config.dev.hot,
+    open: config.dev.autoOpenBrowser
   },
   mode: "development"
-}
+})
+
+
+//module.exports = devWebpackConfig
+module.exports = new Promise((resolve, reject) => {
+  portfinder.basePort = config.dev.port
+  portfinder.getPort((err, port) => {
+    if (err) {
+      reject(err)
+    } else {
+      devWebpackConfig.devServer.port = port
+      devWebpackConfig.plugins.push(
+        new FriendlyErrorsWebpackPlugin({
+          compilationSuccessInfo: [
+            `应用运行中: http://${devWebpackConfig.devServer.host}:${port}`
+          ]
+        })
+      )
+      /*devWebpackConfig.plugins.push({
+        compilationSuccessInfo: [
+          `应用运行中: http://${devWebpackConfig.devServer.host}:${port}`
+        ]
+      })*/
+      resolve(devWebpackConfig)
+    }
+  })
+})
+/*
+module.exports = new Promise((resolve, reject) => {
+  portfinder.basePort = config.dev.port
+  portfinder.getPort((err, port) => {
+    if (err) {
+      reject(err)
+    } else {
+      devWebpackConfig.devServer.port = port
+      devWebpackConfig.plugins.push({
+        compilationSuccessInfo: [
+          `应用运行中: http://${devWebpackConfig.devServer.host}:${port}`
+        ]
+      })
+      resolve(devWebpackConfig)
+    }
+  })
+})*/

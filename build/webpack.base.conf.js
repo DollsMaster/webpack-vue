@@ -1,26 +1,21 @@
-
-const config = require('../config/index')
-const {VueLoaderPlugin} = require("vue-loader");
-const path = require('path')
+const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const {VueLoaderPlugin} = require("vue-loader");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
+
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 module.exports = {
-  entry: {
-    app: './src/main.js'
-  },
+  entry: resolve('./src/main.js'),
   output: {
-    path: config.build.assetsRoot,
-    filename: "[name].js",
-    publicPath: process.env.NODE_ENV === 'production'
-                ? config.build.assetsPublicPath
-                : config.dev.assetsPublicPath
+    path: resolve('./dist'),
+    filename: "[name].js"
   },
   resolve: {
     alias: {
-      '@': resolve('src')
+      '@': path.resolve(__dirname, '../src')
     }
   },
   module: {
@@ -33,25 +28,32 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
+        use: [
+          MiniCssExtractPlugin.loader, 'css-loader'
+        ]
       },
       {
         test: /\.scss$/,
         use: ['vue-style-loader', 'css-loader', 'sass-loader']
       },
       {
-        test: /\.js$/,
-        include: [
-          resolve('src')
-        ],
+        test: /\.js/,
+        exclude: /(node_modules)/,
         use: {
-          loader: "babel-loader"
+          loader: "babel-loader",
+          options: {
+            presets: ['@babel/preset-env']
+          }
         }
       }
     ]
   },
   plugins: [
     new VueLoaderPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, '../index.html'),
+      filename: "index.html"
+    }),
     new MiniCssExtractPlugin({
       filename: '[chunkhash].css'
     }),

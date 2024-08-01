@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader')
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
 module.exports = {
   entry: './src/main.js',
@@ -39,6 +40,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new NodePolyfillPlugin(),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       template: "./index.html",

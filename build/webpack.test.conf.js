@@ -36,7 +36,10 @@ module.exports = new Promise((resolve, reject) => {
       webpackDevConfig.plugins.push({
         compilationSuccessInfo: [
             `应用运行中: http://${webpackDevConfig.devServer.host}:${port}`
-        ]
+        ],
+        onErrors: true
+            ? utils.createNotifierCallback()
+            : undefined
       })
       resolve(webpackBaseConfig)
     }

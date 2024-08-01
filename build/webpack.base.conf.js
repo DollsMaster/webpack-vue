@@ -11,7 +11,7 @@ module.exports = {
   entry: resolve('./src/main.js'),
   output: {
     path: resolve('./dist'),
-    filename: "[name].js"
+    filename: "[name]-[chunkhash].js"
   },
   resolve: {
     alias: {

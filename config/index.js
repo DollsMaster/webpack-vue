@@ -1,7 +1,7 @@
 const path = require('path')
 module.exports = {
   dev: {
-    host: '0.0.0.0',
+    host: 'localhost',
     port: '9528',
     hot: true,
     assetsPublicPath: '/',
@@ -9,7 +9,7 @@ module.exports = {
   },
   build: {
     assetsPublicPath: '/',
-    assetsRoot: path.resolve(__dirname, '../dist')
+    assetsRoot: path.resolve(__dirname, '../dist'),
+    devtool: 'source-map',
   }
-
 }

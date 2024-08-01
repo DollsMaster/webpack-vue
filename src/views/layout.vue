@@ -1,6 +1,6 @@
 <template>
   <div class="layout-wrap">
-1231231231ddddddddddd
+
   </div>
 </template>
 <script>
@@ -17,8 +17,5 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-.layout-wrap {
-  color: red;
-  background-color: aqua;
-}
+
 </style>

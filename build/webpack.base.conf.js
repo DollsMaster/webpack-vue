@@ -8,9 +8,9 @@ function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 module.exports = {
-  entry: resolve('./src/main.js'),
+  entry: path.resolve(__dirname, '../src/main.js'),
   output: {
-    path: resolve('./dist'),
+    path: path.resolve(__dirname, '../dist'),
     filename: "[name]-[chunkhash].js"
   },
   resolve: {

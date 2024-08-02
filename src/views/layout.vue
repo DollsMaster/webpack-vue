@@ -1,6 +1,6 @@
 <template>
   <div class="layout-wrap">
-
+    雾雨魔理沙
   </div>
 </template>
 <script>
@@ -17,5 +17,8 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-
+.layout-wrap {
+  text-align: center;
+  color: rebeccapurple;
+}
 </style>

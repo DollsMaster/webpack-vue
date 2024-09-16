@@ -1,25 +1,37 @@
-const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const {VueLoaderPlugin} = require("vue-loader");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const {CleanWebpackPlugin} = require("clean-webpack-plugin");
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader')
 
-function resolve(dir) {
+function getAbsolutePath(dir) {
+  return  path.resolve(__dirname, dir)
+}
+function getJoinPath(dir) {
   return path.join(__dirname, '..', dir)
 }
 module.exports = {
-  entry: path.resolve(__dirname, '../src/main.js'),
+  entry: getAbsolutePath('../src/main'),
   output: {
-    path: path.resolve(__dirname, '../dist'),
-    filename: "[name]-[chunkhash].js"
+    path: getAbsolutePath('../dist'),
+    filename: "[name]-[chunkhash:8].js",
+    chunkFilename: "[name]-[chunkhash:8].js"
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, '../src')
+      '@': getJoinPath('src')
     }
   },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      },
       {
         test: /\.vue$/,
         use: {
@@ -27,36 +39,24 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/,
+        test: /\.s[ac]ss$/,
         use: [
-          MiniCssExtractPlugin.loader, 'css-loader'
-        ]
-      },
-      {
-        test: /\.scss$/,
-        use: ['vue-style-loader', 'css-loader', 'sass-loader']
-      },
-      {
-        test: /\.js/,
-        exclude: /(node_modules)/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ['@babel/preset-env']
+          {
+            loader: "style-loader"
+          },{
+            loader: "css-loader"
+          },{
+            loader: "sass-loader"
           }
-        }
+        ]
       }
     ]
   },
   plugins: [
-    new VueLoaderPlugin(),
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../index.html'),
-      filename: "index.html"
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[chunkhash].css'
-    }),
-    new CleanWebpackPlugin()
+      new HtmlWebpackPlugin({
+        template: "./index.html",
+        filename: "index.html"
+      }),
+      new VueLoaderPlugin()
   ]
 }

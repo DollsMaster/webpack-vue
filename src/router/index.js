@@ -1,14 +1,12 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-Vue.use(VueRouter)
-const routes = [
-    {
-        path: '/',
-        name: 'layout',
-        component: () => import('@/views/layout.vue')
-    }
+import { createMemoryHistory, createRouter } from 'vue-router'
+const routes= [
+  {
+    path: '/',
+    component: () => import('@/views/layout/layout.vue')
+  }
 ]
-const vueRouter = new VueRouter({
-    routes
+const router = createRouter({
+  history: createMemoryHistory(),
+  routes
 })
-export default vueRouter;
+export default router

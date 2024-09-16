@@ -1,13 +1,12 @@
 import axios from "axios";
-const service = axios.create({
-  baseURL: "www.baidu.com",
-  timeout: 6000,
-  withCredentials: true
+const service = new axios({
+  baseURL: '',
+  timeout: 6000
 })
-service.interceptors.request.use((config) => {
-  return config
+service.interceptors.request.use(config => {
+  return config;
 })
-service.interceptors.response.use((config) => {
-  return config
+service.interceptors.response.use(response => {
+  return response
 })
-export default service;
+export default service

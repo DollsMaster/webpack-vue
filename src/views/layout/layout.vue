@@ -1,16 +1,14 @@
 <script setup>
-
+import loginModal from '../../components/loginModal/loginModal.vue'
 </script>
 
 <template>
   <div class="layout">
-    234123123
+    <img src="../../assets/test.png">
+    <loginModal></loginModal>
   </div>
 </template>
 
 <style scoped lang="scss">
-.layout {
-  color: aliceblue;
-  background-color: red;
-}
+
 </style>

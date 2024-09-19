@@ -2,11 +2,16 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import naiveUi from 'naive-ui'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+
+
+
 import '@/styles/index.scss'
 
 const createApps = createApp(App)
+
 createApps.use(router)
-createApps.use(naiveUi)
 createApps.use(store)
+createApps.use(ElementPlus)
 createApps.mount('#app')

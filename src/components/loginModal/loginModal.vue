@@ -1,6 +1,6 @@
 <script setup>
 import {ref} from "vue";
-const radioGroupModel = ref(1)
+const radioGroupModel = ref(0)
 const radioGroupOptionsDefalut = [
   {
     value: 1,
@@ -14,43 +14,68 @@ const radioGroupOptions = ref(radioGroupOptionsDefalut)
 </script>
 
 <template>
-  <div class="loginModal-wrap">
+  <div id="loginModal-id" class="loginModal-wrap">
     <div class="loginModal-shade"></div>
     <div class="loginModal-content">
-      <div>
-        <el-radio-group v-model="radioGroupModel">
-          <el-radio-button
-            v-for="item in radioGroupOptionsDefalut"
-            :label="item.label"
-            :value="item.value" />
-        </el-radio-group>
+      <div class="loginModal-content-tab">
+        <ul class="content-tab_switch">
+          <li v-for="(item, index) in radioGroupOptionsDefalut" :key="item" :class="{'is-active': radioGroupModel === index}">
+            <p>{{item.label}}</p>
+          </li>
+        </ul>
 
         <div class="loginModal-close">
-          <span class="loginModal-close-icon"></span>
+          <el-icon><Close /></el-icon>
         </div>
       </div>
 
-      <img src="../../icons/svg/close.svg" alt="" srcset="">
-      <el-icon class="el-input__icon" style="width: 100px;height: 100px"></el-icon>
-      <ul class="loginModal-content-list">
-        <li class="loginModal-content-item">
-          <el-input
-              v-model="input4"
-              style="width: 240px"
-              placeholder="Type something"
-          >
-            <template #prefix>
-              <el-icon class="el-input__icon"></el-icon>
-            </template>
-          </el-input>
-        </li>
-      </ul>
-
+      <div class="loginModal-content-input" style="padding: 2rem">
+        <ul class="loginModal-content-list">
+          <li class="loginModal-content-item">
+            <el-input
+                v-model="input4"
+                style="width: 240px"
+                placeholder="您的邮箱"
+            >
+              <template #prefix>
+                <el-icon><UserFilled /></el-icon>
+              </template>
+            </el-input>
+          </li>
+          <li class="loginModal-content-item">
+            <el-input
+                v-model="input4"
+                style="width: 240px"
+                type="password"
+                show-password
+                placeholder="您的密码"
+            >
+              <template #prefix>
+                <el-icon><UserFilled /></el-icon>
+              </template>
+            </el-input>
+          </li>
+        </ul>
+      </div>
+      <div class="loginModal-content-submit">
+        <el-button size="large" color="#4caf50" style="width: 100%;color: white">登录</el-button>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+$whiteWordColor: #fff;
+$tabWordColor: #151b3c;
+$tabWordColorHover: rgba(82,94,84,.3);
+$tabWordColorChecked: #525e54;
+#loginModal-id .is-active {
+  p {
+    color: $whiteWordColor;
+  }
+  background-color: $tabWordColorChecked;
+}
+
 .loginModal-wrap {
   position: fixed;
   display: flex;
@@ -77,11 +102,8 @@ const radioGroupOptions = ref(radioGroupOptionsDefalut)
   height: auto;
   background-color: #fff;
   border-radius: 10px;
-  .loginModal-close-icon {
-    &:before {
-      content: "\f00d";
-    }
-  }
+
+
   .loginModal-content-list {
     display: flex;
     flex-direction: column;
@@ -90,5 +112,50 @@ const radioGroupOptions = ref(radioGroupOptionsDefalut)
     }
   }
 }
+.loginModal-content-tab {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .content-tab_switch {
+    display: flex;
+    flex-direction: row;
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 1.5rem;
+      background-color: rgba(0,0,0,.05);
+      cursor: pointer;
+      &:first-child {
+        border-radius: 0 0 0 0.5rem;
+      }
+      &:last-child {
+        border-radius: 0 0 0.5rem 0;
+      }
+      &:hover {
+        background-color: $tabWordColorHover;
+      }
+      p {
+        color: $tabWordColor;
+      }
+    }
+  }
+  .loginModal-close {
+    padding: 0.5rem 1.5rem;
+    background-color: rgba(0,0,0,.05);
+    border-radius: 0 0 0 0.5rem;
+    &:hover {
+      .el-icon {
+        color: white;
+      }
+      background-color: $tabWordColorChecked;
+    }
+    .el-icon {
+      font-size: 1.5rem;
+      color: #525e54;
+    }
+  }
+}
+
 
 </style>

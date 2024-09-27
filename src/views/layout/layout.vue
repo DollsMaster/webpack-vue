@@ -4,7 +4,7 @@ import loginModal from '../../components/loginModal/loginModal.vue'
 
 <template>
   <div class="layout">
-    <img src="../../assets/test.png">
+<!--    <img src="../../assets/test.png">-->
     <loginModal></loginModal>
   </div>
 </template>

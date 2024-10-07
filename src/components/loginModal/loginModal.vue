@@ -1,6 +1,9 @@
 <script setup>
 import {ref, onMounted} from "vue";
-const isVisable = ref(true)
+import Login from './login.vue'
+import Register from './register.vue'
+import ForgetPassword from './forgetPassword.vue'
+const isVisable = ref(false)
 const tabIndexModel = ref(1)
 const tabs = [
   {
@@ -16,11 +19,7 @@ const tabs = [
 ]
 const tabOptions = ref(tabs)
 
-const loginModel = ref({
-  email: '',
-  password: '',
-  authCode: ''
-})
+
 const tabChange = (val) => {
   tabIndexModel.value = val.value;
 }
@@ -28,16 +27,17 @@ const loginModalClose = () => {
   isVisable.value = !isVisable.value
 }
 const submit = (() => {
+  const loginRef =
   console.log('submit')
 });
 </script>
 
 <template>
-  <div id="loginModalId" class="loginModal-wrap" v-if="isVisable">
-    <div class="loginModal-shade" @click="test()"></div>
+  <div id="loginModalId" class="loginModal-wrap layout-center" v-if="isVisable">
+    <div class="loginModal-shade"></div>
     <div class="loginModal-content">
       <div style="display: flex;flex-direction: row;justify-content: space-between">
-        <ul class="loginModal-tab">
+        <ul class="loginModal-tab layout-direction-row">
           <li
               class="loginModal-tab-item"
               :class="{'is-active': tabIndexModel === item.value}"
@@ -52,46 +52,9 @@ const submit = (() => {
         </div>
       </div>
 
-      <ul class="loginModal-content-list">
-        <li class="loginModal-content-item">
-          <el-input
-              v-model="loginModel.email"
-              placeholder="您的邮箱"
-          >
-            <template #prefix>
-              <el-icon size="1rem"><User /></el-icon>
-            </template>
-          </el-input>
-        </li>
-
-        <li class="loginModal-content-item">
-          <el-input
-              v-model="loginModel.password"
-              placeholder="您的密码"
-              show-password
-          >
-            <template #prefix>
-              <el-icon size="1rem"><Lock /></el-icon>
-            </template>
-          </el-input>
-        </li>
-
-        <li class="loginModal-content-item">
-          <el-input
-              v-model="loginModel.authCode"
-              placeholder="验证码"
-          >
-            <template #prefix>
-              <el-icon size="1rem"><EditPen /></el-icon>
-            </template>
-          </el-input>
-
-        </li>
-      </ul>
-
-      <el-button type="primary" icon="Promotion" color="#4caf50" style="width: 100%;color: #ffffff;border-radius: 0 0 8px 8px" @click="submit">
-        登陆
-      </el-button>
+      <Login ref="loginRef" v-if="tabIndexModel === 1"></Login>
+      <Register v-else-if="tabIndexModel === 2"></Register>
+      <ForgetPassword v-else></ForgetPassword>
     </div>
   </div>
 </template>
@@ -100,60 +63,47 @@ const submit = (() => {
 .loginModal-wrap {
   position: fixed;
   top: 0;
-  display: flex;
   width: 100vw;
   height: 100vh;
-  justify-content: center;
-  align-items: center;
 }
 //*遮罩
 .loginModal-wrap .loginModal-shade {
-  background-color: rgba(0,0,0,.65);
+  background-color: var(--sys-grey-shade);
   position: fixed;
   right: 0;
   bottom: 0;
   left: 0;
   top: 0;
-  cursor: pointer;
 }
 //*内容
 .loginModal-content {
+  margin: 2rem;
   position: relative;
   z-index: 9;
-  width: 500px;
+  width: 30rem;
   height: auto;
-  background-color: #fff;
+  background-color: var(--sys-white-word);
   border-radius: 10px;
   .loginModal-close-icon {
     &:before {
       content: "\f00d";
     }
   }
-  .loginModal-content-list {
-    padding: 1rem 1rem .5rem 1rem;
-    display: flex;
-    flex-direction: column;
-    .loginModal-content-item {
-      width: 100%;
-      margin-bottom: 10px;
-    }
-  }
+
 }
 
 #loginModalId .is-active {
-  color: #ffffff;
-  background-color: #525e54;
+  color: var(--sys-white-word);
+  background-color: var(--sys-grey-isActive);
 }
 .loginModal-content .loginModal-tab {
-
-  display: flex;
-  flex-direction: row;
   .loginModal-tab-item {
+    transition: all .2s;
     padding: .7rem 1.5rem;
-    background-color: rgba(0,0,0,.05);
+    background-color: var(--sys-grey-word);
     cursor: pointer;
     &:hover {
-      background-color: rgba(82,94,84,.3);
+      background-color: var(--sys-grey-word_hover);
     }
     &:first-child {
       border-radius: 8px 0 0 8px;
@@ -164,13 +114,14 @@ const submit = (() => {
   }
 }
 .loginModal-content-close {
+  transition: all .2s;
   padding: 0.8rem 1rem;
   border-radius: 0 8px 0 8px;
-  background-color: rgba(0,0,0,.05);
+  background-color: var(--sys-grey-word);
   cursor: pointer;
   &:hover {
-    color: #ffffff;
-    background-color: #525e54;
+    color: var(--sys-white-word);
+    background-color: var(--sys-grey-isActive);
   }
 }
 

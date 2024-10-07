@@ -1,0 +1,19 @@
+@media screen and (max-width: 400px){
+  :root {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  :root {
+    font-size: 14px;
+  }
+}
+.layout-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.layout-direction-row {
+  display: flex;
+  flex-direction: row;
+}

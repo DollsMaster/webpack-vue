@@ -1,10 +1,10 @@
 <script setup>
-import loginModal from '../../components/loginModal/loginModal.vue'
+import headerMenu from './components/headerMenu.vue'
 </script>
 
 <template>
   <div class="layout">
-
+    <header-menu></header-menu>
   </div>
 </template>
 

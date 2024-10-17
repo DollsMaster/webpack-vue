@@ -8,7 +8,6 @@ const siginVisable = ref(false)
     <div class="nav-sigin">
       <span>签到</span>
     </div>
-
   </div>
 </template>
 

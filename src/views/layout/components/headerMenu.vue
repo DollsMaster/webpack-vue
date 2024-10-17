@@ -7,7 +7,7 @@ import {navigationBarOption} from "@/config/dictonary";
 
 <template>
   <div class="header-menu">
-<!--    <img class="header-banner" src="../../../assets/banner.jpg" alt="">-->
+    <img class="header-banner" src="../../../assets/banner.jpg" alt="">
     <div class="header-menu-compoents">
       <div class="layout-width layout-direction-row layout-center" style="height: 100%">
         <nav-menu :options="navigationBarOption"></nav-menu>

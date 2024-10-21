@@ -10,16 +10,22 @@ const dialogVisable = ref(false)
     <div class="user-menu-avater">
       <img src="../../assets/userAvaer.jpg" alt="">
     </div>
-    <div class="user-menu-dialog" :class="[dialogVisable ? 'is-active' : 'is-active']" v-show="true">
+    <div class="user-menu-dialog" :class="[dialogVisable ? 'is-active' : 'is-active']" v-show="dialogVisable">
       <div class="user-menu-title">
         <span>积分：2000</span>
       </div>
       <div class="user-menu-wrap">
         <div class="user-menu-item" v-for="(item, index) in navigationBarOptions" :key="index">
-          <div class="user-menu-item_title layout-center">{{item.label}}</div>
+          <div class="user-menu-item_title layout-center">
+            <span class="user-menu-item_icon">
+              <el-icon size="1rem" style="color: #ffffff;margin: 3px"><TrendCharts /></el-icon>
+            </span>
+            <span class="user-menu-item_word">{{item.label}}</span>
+          </div>
           <ul class="user-menu-item_child">
-            <li class="layout-center" v-for="(itema, indexa) in item.child">
-              <span>{{itema.label}}</span>
+            <li class="" v-for="(itema, indexa) in item.child">
+              <el-icon><CirclePlusFilled /></el-icon>
+              <span style="margin-left: 5px">{{itema.label}}</span>
             </li>
           </ul>
         </div>
@@ -47,15 +53,12 @@ const dialogVisable = ref(false)
 }
 .is-active {
   animation-name: isActiveAnimation;
-  animation-duration: .8s;
+  animation-duration: .4s;
 }
 .user-menu-dialog {
   position: absolute;
   top: 0;
   right: 0;
-  width: 30rem;
-  height: 20rem;
-  border: solid 1px red;
   background-color: white;
 
   backdrop-filter: blur(10px);
@@ -75,14 +78,12 @@ const dialogVisable = ref(false)
   }
 
   .user-menu-wrap {
+    padding: .7rem 0;
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 100%;
     .user-menu-item {
-      width: 20%;
-      height: 100%;
-      border: solid 1px green;
+      border-left: 1px solid rgba(0, 0, 0, .05);
     }
     .user-menu-item_title, .user-menu-item_child {
       display: flex;
@@ -95,6 +96,31 @@ const dialogVisable = ref(false)
           color: #ffffff;
           background-color: var(--sys-grey-isActive);
         }
+      }
+    }
+    .user-menu-item_title {
+      padding: 0.7rem 1rem;
+      .user-menu-item_icon {
+        margin-bottom: 10px;
+        border-radius: 100%;
+        background-color: rgba(0,0,0,.5);
+      }
+      .user-menu-item_word {
+        color: #525e54;
+        font-size: .8rem;
+      }
+    }
+
+    .user-menu-item_child {
+      li {
+        padding: .5rem 1rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      span {
+        font-size: .75rem;
+        white-space: nowrap;
       }
     }
   }

@@ -8,8 +8,7 @@
     font-size: 14px;
   }
 }
-@media screen and (max-width: 1920px) {
-
+@media screen and (min-width: 998px) {
   :root {
     .layout-width {
       width: 1180px;

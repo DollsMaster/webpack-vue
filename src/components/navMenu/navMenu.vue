@@ -19,7 +19,7 @@ const popper = ref(null)
 </script>
 
 <template>
-  <div class="nav-menu ">
+  <div class="nav-menu">
     <ul class="nav-menu_list layout-direction-row layout-center">
       <li class="nav-menu_item">
         <span class="nav-home_icon">
@@ -52,16 +52,19 @@ const popper = ref(null)
 
 <style scoped lang="scss">
 .nav-menu {
-
+  width: 100%;
   height: 100%;
   .nav-menu_list {
-
+    width: 100%;
     height: 100%;
     .nav-menu_item {
-
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
       position: relative;
       font-size: 1.1rem;
-      padding: 0 1.5rem;
+      text-align: center;
       height: 100%;
       display: flex;
       align-items: center;

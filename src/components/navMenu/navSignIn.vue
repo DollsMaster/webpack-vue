@@ -22,6 +22,9 @@ const siginVisable = ref(false)
   color: var(--sys-white-word);
   background-color: var(--sys-grey-isActive);
   cursor: pointer;
+  span {
+    white-space: nowrap;
+  }
   &:hover {
     transition: all 2s;
     animation-name: navSigin;

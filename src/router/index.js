@@ -1,19 +1,26 @@
-import { createMemoryHistory, createRouter } from 'vue-router'
+import { createMemoryHistory, createRouter, createWebHashHistory } from 'vue-router'
 const routes= [
+
   {
     path: '/',
-    component: () => import('@/views/layout/layout.vue'),
-    redirect: '/home',
+    name: 'layout',
+    component: () => import('../views/layout/layout.vue'),
     children: [
+      {
+        path: '/sign',
+        component: () => import('@/views/sign/sign.vue')
+      },
       {
         path: '/home',
         component: () => import('@/views/home/home.vue')
       }
     ]
-  },
+  }
+
+
 ]
 const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHashHistory(),
   routes
 })
 export default router

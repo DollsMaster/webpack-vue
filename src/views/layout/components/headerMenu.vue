@@ -35,13 +35,14 @@ import {navigationBarOption} from "@/config/dictonary";
   object-fit: cover;
 }
 .header-menu-compoents {
-  width: 100vw;
+  width: 100%;
   height: 3.1rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   position: absolute;
+  z-index: 1;
   bottom: 0;
 
   box-shadow: 0 0 10px 0 rgba(0,0,0,.15);

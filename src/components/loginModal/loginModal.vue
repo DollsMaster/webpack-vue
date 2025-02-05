@@ -3,7 +3,7 @@ import {ref, onMounted} from "vue";
 import Login from './login.vue'
 import Register from './register.vue'
 import ForgetPassword from './forgetPassword.vue'
-const isVisable = ref(false)
+const isVisable = ref(true)
 const tabIndexModel = ref(1)
 const tabs = [
   {
@@ -19,7 +19,12 @@ const tabs = [
 ]
 const tabOptions = ref(tabs)
 
-
+function shows () {
+  console.log('cccc')
+}
+const show = () => {
+  isVisable.value = true
+}
 const tabChange = (val) => {
   tabIndexModel.value = val.value;
 }
@@ -30,10 +35,15 @@ const submit = (() => {
   const loginRef =
   console.log('submit')
 });
+
+defineExpose({
+  shows,
+  tabChange
+})
 </script>
 
 <template>
-  <div id="loginModalId" class="loginModal-wrap layout-center" v-if="isVisable">
+  <div id="loginModalId" class="loginModal-wrap layout-center">
     <div class="loginModal-shade"></div>
     <div class="loginModal-content">
       <div style="display: flex;flex-direction: row;justify-content: space-between">
@@ -62,6 +72,7 @@ const submit = (() => {
 <style scoped lang="scss">
 .loginModal-wrap {
   position: fixed;
+  z-index: 1;
   top: 0;
   width: 100vw;
   height: 100vh;
@@ -70,6 +81,7 @@ const submit = (() => {
 .loginModal-wrap .loginModal-shade {
   background-color: var(--sys-grey-shade);
   position: fixed;
+
   right: 0;
   bottom: 0;
   left: 0;

@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from 'vue'
+import {ref, onMounted} from 'vue'
 import recomm from '@/components/recomm/recomm.vue'
 const images = [
   {
@@ -29,16 +29,60 @@ const images = [
   }
 ]
 const imageList = ref(images)
+let index = 0;
+const playTimer = 5000;
+
+setInterval(() => {
+  if (index === 2) {
+    index = 0
+  } else {
+    index += 1
+  }
+  style.value = `transform: translateX(-${index * 43.5}rem);`
+}, playTimer)
+
+const style = ref(``)
+
+
+
 </script>
 
 <template>
-<div class="recommList-wrap">
-  <recomm class="recomm-item" v-for="(item, index) in imageList" :src="item.src" :label="item.label"></recomm>
-</div>
+  <div class="recomms-wrap">
+    <div class="swiper-container">
+      <div class="swiper-wrap" :style="style">
+        <div class="recommList-wrap">
+          <recomm class="recomm-item" v-for="(item, index) in imageList" :src="item.src" :label="item.label"></recomm>
+        </div>
+        <div class="recommList-wrap">
+          <recomm class="recomm-item" v-for="(item, index) in imageList" :src="item.src" :label="item.label"></recomm>
+        </div>
+        <div class="recommList-wrap">
+          <recomm class="recomm-item" v-for="(item, index) in imageList" :src="item.src" :label="item.label"></recomm>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped lang="scss">
+.recomms-wrap {
+
+}
+.swiper-container {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+.swiper-wrap {
+  transition: all 1s;
+  display: flex;
+  flex-wrap: nowrap;
+  position: absolute;
+}
 .recommList-wrap {
+  margin-right: .5rem;
+  width: 43rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

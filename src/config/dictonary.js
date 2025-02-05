@@ -112,3 +112,67 @@ export const userMenuOption = [
     ]
   }
 ]
+
+export const newArticles = [
+  {
+    src: `https://i.hmoe.link/wp-content/uploads/2022/07/da8e4e4bd9a7fe1d3d79403460466e66-320x180.jpg`,
+    label: `【GAL/汉化】ジュエリー・ハーツ・アカデミア -We will wing wonder world-【度盘/OD/2.82G】`,
+    owner: `好天然的天然呆`,
+    ownerImg: `https://i.hmoe.link/wp-content/uploads/avatar/116437.jpg?v=d2MAP`,
+    timer: `24小时`
+  },{
+    src: `https://i.hmoe.link/wp-content/uploads/2024/10/9aceae71f2531914c098df22ef65c91c-320x180.jpg`,
+    label: `【GAL/汉化】ジュエリー・ハーツ・アカデミア -We will wing wonder world-【度盘/OD/2.82G】`,
+    owner: `好天然的天然呆`,
+    ownerImg: `https://i.hmoe.link/wp-content/uploads/avatar/116437.jpg?v=d2MAP`,
+    timer: `24小时`
+  },{
+    src: `https://i.hmoe.link/wp-content/uploads/2024/10/b68639bd25cb314a0b197c48b4ead2ce-320x180.jpg`,
+    label: `【GAL/汉化】ジュエリー・ハーツ・アカデミア -We will wing wonder world-【度盘/OD/2.82G】`,
+    owner: `好天然的天然呆`,
+    ownerImg: `https://i.hmoe.link/wp-content/uploads/avatar/116437.jpg?v=d2MAP`,
+    timer: `24小时`
+  },{
+    src: `https://i.hmoe.link/wp-content/uploads/2024/09/64bebe54ca5e2d524b7fc2654e21d85a-320x180.jpg`,
+    label: `【GAL/汉化】ジュエリー・ハーツ・アカデミア -We will wing wonder world-【度盘/OD/2.82G】`,
+    owner: `好天然的天然呆`,
+    ownerImg: `https://i.hmoe.link/wp-content/uploads/avatar/116437.jpg?v=d2MAP`,
+    timer: `24小时`
+  },{
+    src: `https://i.hmoe.link/wp-content/uploads/2024/09/0fae8a8fa319b4e7927dbee187b94394.jpg`,
+    label: `【GAL/汉化】ジュエリー・ハーツ・アカデミア -We will wing wonder world-【度盘/OD/2.82G】`,
+    owner: `好天然的天然呆`,
+    ownerImg: `https://i.hmoe.link/wp-content/uploads/avatar/116437.jpg?v=d2MAP`,
+    timer: `24小时`
+  },{
+    src: `https://i.hmoe.link/wp-content/uploads/2024/09/5331f6c916afbbf8376a4c546ea939cc-320x180.jpg`,
+    label: `【GAL/汉化】ジュエリー・ハーツ・アカデミア -We will wing wonder world-【度盘/OD/2.82G】`,
+    owner: `好天然的天然呆`,
+    ownerImg: `https://i.hmoe.link/wp-content/uploads/avatar/116437.jpg?v=d2MAP`,
+    timer: `24小时`
+  },{
+    src: `https://i.hmoe.link/wp-content/uploads/2024/10/b68639bd25cb314a0b197c48b4ead2ce-320x180.jpg`,
+    label: `【GAL/汉化】ジュエリー・ハーツ・アカデミア -We will wing wonder world-【度盘/OD/2.82G】`,
+    owner: `好天然的天然呆`,
+    ownerImg: `https://i.hmoe.link/wp-content/uploads/avatar/116437.jpg?v=d2MAP`,
+    timer: `24小时`
+  },{
+    src: `https://i.hmoe.link/wp-content/uploads/2024/09/64bebe54ca5e2d524b7fc2654e21d85a-320x180.jpg`,
+    label: `【GAL/汉化】ジュエリー・ハーツ・アカデミア -We will wing wonder world-【度盘/OD/2.82G】`,
+    owner: `好天然的天然呆`,
+    ownerImg: `https://i.hmoe.link/wp-content/uploads/avatar/116437.jpg?v=d2MAP`,
+    timer: `24小时`
+  },{
+    src: `https://i.hmoe.link/wp-content/uploads/2024/09/0fae8a8fa319b4e7927dbee187b94394.jpg`,
+    label: `【GAL/汉化】ジュエリー・ハーツ・アカデミア -We will wing wonder world-【度盘/OD/2.82G】`,
+    owner: `好天然的天然呆`,
+    ownerImg: `https://i.hmoe.link/wp-content/uploads/avatar/116437.jpg?v=d2MAP`,
+    timer: `24小时`
+  },{
+    src: `https://i.hmoe.link/wp-content/uploads/2024/09/5331f6c916afbbf8376a4c546ea939cc-320x180.jpg`,
+    label: `【GAL/汉化】ジュエリー・ハーツ・アカデミア -We will wing wonder world-【度盘/OD/2.82G】`,
+    owner: `好天然的天然呆`,
+    ownerImg: `https://i.hmoe.link/wp-content/uploads/avatar/116437.jpg?v=d2MAP`,
+    timer: `24小时`
+  }
+]

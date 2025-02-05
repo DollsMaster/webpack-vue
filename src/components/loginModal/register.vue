@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from 'vue'
+import {ref, onMounted} from 'vue'
 const formRef = ref(null)
 const formRules = ref(null)
 const formData = ref({
@@ -8,6 +8,7 @@ const formData = ref({
   password: ''
 })
 const submitForm = async (formEl) => {
+  console.log('-------------formEl', formEl)
   await formEl.validate((valid, fields) => {
     if (valid) {
       console.log('submit!')
@@ -16,6 +17,10 @@ const submitForm = async (formEl) => {
     }
   })
 }
+onMounted(() => {
+
+})
+
 </script>
 
 <template>

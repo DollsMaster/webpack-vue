@@ -9,7 +9,6 @@
   }
 }
 @media screen and (max-width: 1920px) {
-
   :root {
     .layout-width {
       width: 1180px;
@@ -25,4 +24,8 @@
 .layout-direction-row {
   display: flex;
   flex-direction: row;
+}
+.layout-align-items-center {
+  display: flex;
+  align-items: center;
 }

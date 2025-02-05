@@ -13,8 +13,9 @@ const siginVisable = ref(false)
 
 <style scoped lang="scss">
 .nav-sigin-wrap {
+  margin-left: 2rem;
   position: relative;
-
+  height: 100%;
 }
 .nav-sigin {
   padding: 1rem 1.5rem;
@@ -22,6 +23,9 @@ const siginVisable = ref(false)
   color: var(--sys-white-word);
   background-color: var(--sys-grey-isActive);
   cursor: pointer;
+  span {
+    white-space: nowrap;
+  }
   &:hover {
     transition: all 2s;
     animation-name: navSigin;

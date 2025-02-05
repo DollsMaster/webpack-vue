@@ -50,6 +50,8 @@ export const navigationBarOption = [
     label: '公示'
   },{
     label: '商店'
+  },{
+    label: '商店的'
   }
 ]
 

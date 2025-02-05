@@ -2,15 +2,15 @@
 import {ref, onMounted} from 'vue';
 const bannerOptions = [
   {
-    img: `https://www.moe-acg.com/wp-content/uploads/2024/10/5df3ec849ea45748f47ad34b2b78e25b-320x180.jpg`,
+    img: `https://www.moe-acg.com/wp-content/uploads/2024/10/5df3ec849ea45748f47ad34b2b78e25b-320x1801.jpg`,
   },{
-    img: `https://www.moe-acg.com/wp-content/uploads/2024/10/9aceae71f2531914c098df22ef65c91c-320x180.jpg`,
+    img: `https://www.moe-acg.com/wp-content/uploads/2024/10/9aceae71f2531914c098df22ef65c91c-320x1801.jpg`,
   },{
-    img: `https://www.moe-acg.com/wp-content/uploads/2024/08/c547413099cb33641a17ecda282aca9c-320x180.jpg`,
+    img: `https://www.moe-acg.com/wp-content/uploads/2024/08/c547413099cb33641a17ecda282aca9c-320x1801.jpg`,
   },{
-    img: `https://www.moe-acg.com/wp-content/uploads/2023/02/d821a77b4bdf3731ac0e421fb54e55fb-320x180.jpg`,
+    img: `https://www.moe-acg.com/wp-content/uploads/2023/02/d821a77b4bdf3731ac0e421fb54e55fb-320x1801.jpg`,
   },{
-    img: `https://www.moe-acg.com/wp-content/uploads/2024/08/c547413099cb33641a17ecda282aca9c-320x180.jpg`,
+    img: `https://www.moe-acg.com/wp-content/uploads/2024/08/c547413099cb33641a17ecda282aca9c-320x1801.jpg`,
   }
 ]
 const left = ref('0rem')
@@ -59,6 +59,7 @@ onMounted(() => {
 <style scoped lang="scss">
 .banner-wrap {
   position: relative;
+  z-index: -1;
   overflow: hidden;
   width: 30rem;
   height: 17rem;
@@ -69,6 +70,7 @@ onMounted(() => {
   position: absolute;
   display: flex;
   flex-direction: row;
+  z-index: -1;
   li {
     width: 30rem;
     height: 17rem;

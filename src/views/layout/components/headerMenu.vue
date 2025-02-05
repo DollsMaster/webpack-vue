@@ -26,7 +26,7 @@ import {navigationBarOption} from "@/config/dictonary";
 <style scoped lang="scss">
 .header-menu {
   position: relative;
-  height: 250px;
+  height: 230px;
 }
 .header-banner {
   position: absolute;

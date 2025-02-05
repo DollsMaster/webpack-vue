@@ -19,23 +19,22 @@ const popper = ref(null)
 </script>
 
 <template>
-  <div class="nav-menu ">
+  <div class="nav-menu">
     <ul class="nav-menu_list layout-direction-row layout-center">
-      <li class="nav-menu_item">
-        <span class="nav-home_icon">
+      <li class="nav-menu_item layout-center">
+        <span class="nav-home_icon layout-center">
           <el-icon  size="1rem"><HomeFilled /></el-icon>
         </span>
         <span>首页</span>
       </li>
       <li
-          class="nav-menu_item"
+          class="nav-menu_item layout-center"
           v-for="(item, index) in options"
           @mouseover="navHover = index"
           @mouseout="navHover = -1"
       >
         <span autocapitalize="nav-menu-word">{{item.label}}</span>
-
-        <div class="nav-child" :class="{'is-hover': navHover === index}" v-show="navHover === index && item.child">
+        <div class="nav-child" :class="{'is-hover': navHover === index && item.child}" >
           <div class="triangle"></div>
           <ul class="nav-child-list" >
             <li class="nav-child-item" v-for="(itema) in item.child">
@@ -52,22 +51,18 @@ const popper = ref(null)
 
 <style scoped lang="scss">
 .nav-menu {
-
+  width: 100%;
   height: 100%;
   .nav-menu_list {
-
     height: 100%;
     .nav-menu_item {
-
       position: relative;
       font-size: 1.1rem;
-      padding: 0 1.5rem;
+      width: 100%;
       height: 100%;
-      display: flex;
-      align-items: center;
       .nav-menu-word {
         height: 100%;
-        text-shadow: 0 0px 2px #fff, 0 0px 5px #fff, 0 0px 10px #fff !important;
+        text-shadow: 0 0px 10px #fff !important;
       }
       &:hover {
         transition: all 0.5s;
@@ -79,15 +74,20 @@ const popper = ref(null)
 }
 
 .nav-child {
-  animation-name: navHover;
-  animation-duration: 0.2s;
-  transform: scale(0.5, 0.5);
+  transition: all 0.2s;
+  transform-origin: 0% 0;
+  transform: scale(.5, .5);
+  visibility: hidden;
+  opacity: 0;
+
+
   padding: 0.5rem 0;
+
   min-width: 12rem;
   position: absolute;
   left: 0;
-  top: 3.5rem;
-  backdrop-filter: blur(5px);
+  top: 3.1rem;
+
   .nav-child-list {
     transition: all 0.2s;
     padding: 0.5rem 0;
@@ -106,17 +106,14 @@ const popper = ref(null)
     }
   }
 }
-
-
 .nav-menu .is-hover {
+  visibility: visible;
+  opacity: 1;
   transform: scale(1, 1);
 }
 
 
 .nav-home_icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin-right: 5px;
   width: 1.3rem;
   height: 1.3rem;
@@ -132,16 +129,5 @@ const popper = ref(null)
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
   border-bottom: 8px solid #ffffff;
-}
-
-
-@keyframes navHover {
-  0% {
-    transform: scale(0, 0);
-  }
-
-  100% {
-    transform: scale(1, 1);
-  }
 }
 </style>

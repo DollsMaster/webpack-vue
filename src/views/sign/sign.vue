@@ -17,6 +17,8 @@ function getUser() {
   getUserById({id: "1884496906990669826"})
       .then(res => {
         console.log(res)
+      }).catch(error => {
+        console.log('zzzzzzzzzzzzzzz', error)
       })
 }
 

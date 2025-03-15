@@ -1,3 +1,5 @@
+const webpack = require('webpack')
+const env = require('../config/prod.env')
 const webpackMerge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 const path = require("path");
@@ -8,68 +10,39 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 function getJoinPath(dir) {
   return path.join(__dirname, '..', dir)
 }
-const prodWebpackConfig = {
-  entry: path.resolve(__dirname, '../src/main.js'),
+function resolve(dir) {
+  return path.join(__dirname, '..', dir)
+}
+const prodWebpackConfig = webpackMerge.merge(baseWebpackConfig, {
+  mode: 'production',
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: path.posix.join('js/chunk-[chunkhash:8].js'),
-    chunkFilename: path.posix.join('js/chunk-[chunkhash:8].js')
-  },
-  resolve: {
-    alias: {
-      '@': getJoinPath('src')
-    }
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ['@babel/preset-env']
-          }
-        }
-      },
-      {
-        test: /\.vue$/,
-        use: {
-          loader: "vue-loader"
-        }
-      },
-      {
-        test: /\.s[ac]ss$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader
-          },{
-            loader: "css-loader"
-          },{
-            loader: "sass-loader"
-          }
-        ]
-      }
-    ]
+    filename: `static/js/[name].[chunkhash:8].js`,
+    chunkFilename: `static/js/[name].[chunkhash:8].js`
   },
   plugins: [
-    new CleanWebpackPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': env
+    }),
     new MiniCssExtractPlugin({
-      filename: path.posix.join('css/[name]-[contenthash:8].css'),
-      chunkFilename: path.posix.join('css/[name]-[contenthash:8].css'),
+      filename: `static/css/[name].[contenthash:8].css`,
+      chunkFilename: `static/css/[name].[contenthash:8].css`
     }),
-    new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-      template: "./index.html",
-      filename: "index.html"
+      filename: path.resolve(__dirname, '../dist/index.html'),
+      template: 'index.html',
+      inject: true,
+    
+      title: 'vue-admin-template',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+      }
     }),
-  ],
-  optimization: {
-    chunkIds: 'deterministic',
-    splitChunks: {
-      chunks: 'all'
-    }
-  },
-  mode: 'production'
-}
+    
+    
+
+  ]
+})
 module.exports = prodWebpackConfig;

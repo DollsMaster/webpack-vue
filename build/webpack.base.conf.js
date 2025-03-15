@@ -1,6 +1,6 @@
 const path = require('path')
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const { VueLoaderPlugin } = require('vue-loader')
 const utils = require('./utils')
 function getAbsolutePath(dir) {
@@ -84,23 +84,7 @@ module.exports = {
       }
     ]
   },
-
-  devServer: {
-    historyApiFallback: true,
-    hot: true,
-    compress: true,
-    host: 'localhost',
-    port: 9528,
-    open: false,
-  },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': require('../config/dev.env')
-    }),
-    new HtmlWebpackPlugin({
-      template: "./index.html",
-      filename: "index.html"
-    }),
     new VueLoaderPlugin()
   ]
 }

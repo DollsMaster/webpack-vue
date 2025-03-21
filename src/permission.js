@@ -5,6 +5,9 @@ router.beforeEach((to, from, next) => {
   console.log('---------from', from)
   console.log('---------to', to)
   console.log('cookie', cookie)
+
+  next()
+  return
   if (to.path.indexOf('/sign') > -1) {
     console.log('-1')
     next()

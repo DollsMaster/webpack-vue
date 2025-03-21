@@ -3,6 +3,7 @@ import {ref} from 'vue'
 import banner from '@/components/banner/banner.vue'
 import recommList from './components/recommList.vue'
 import articleList from './components/articleList.vue'
+import quickNavigater from './components/quickNavigater.vue'
 </script>
 
 <template>
@@ -19,7 +20,7 @@ import articleList from './components/articleList.vue'
           <article-list></article-list>
         </div>
         <div class="content-navigater">
-          dsdfsdfsdfs
+          <quick-navigater />
         </div>
       </div>
 
@@ -66,8 +67,5 @@ import articleList from './components/articleList.vue'
   flex-direction: row;
 }
 .content-navigater {
-  width: 200px;
-  height: 800px;
-  border: sienna solid 1px;
 }
 </style>

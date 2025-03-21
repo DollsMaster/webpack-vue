@@ -29,10 +29,15 @@ defineProps({
   display: flex;
   flex-direction: column;
   width: 15rem;
-  height: 15rem;
+  height: 14rem;
 
   box-shadow: 0 3px 10px rgba(0, 0, 0, .1);
   border-radius: 1rem;
+  transition: all .4s;
+  &:hover {
+    background-color: #f1f1f1;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .5);
+  }
 }
 .article-img-wrap {
   width: 100%;
@@ -42,11 +47,13 @@ defineProps({
     height: 100%;
     object-fit: cover;
     border-radius: 1rem 1rem 0 0;
+    cursor: pointer;
   }
 }
 .article-name {
   display: flex;
   padding: .5rem;
+  cursor: pointer;
   span {
     width: 100%;
     color: #151b3c;
@@ -60,7 +67,7 @@ defineProps({
 }
 .article-info {
   font-size: .7rem;
-  padding: 0 1.5rem;
+  padding: 0 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
